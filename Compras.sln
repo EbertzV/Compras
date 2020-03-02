@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compras", "Compras\Compras.csproj", "{C4C47C41-FB3B-4D46-B801-B72E2BD13FB6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Implantação", "Implantação", "{2EB3650F-9FB2-4F12-A966-7C2F9819EF42}"
+	ProjectSection(SolutionItems) = preProject
+		Implantação\v_01.sql = Implantação\v_01.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
