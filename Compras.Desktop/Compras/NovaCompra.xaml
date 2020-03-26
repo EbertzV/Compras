@@ -65,6 +65,8 @@
                 <TextBox Grid.Column="2" x:Name="QuantidadeItem" Grid.Row="1"></TextBox>
             </Grid>
             <Button Margin="5 5 5 5" x:Name="AddButton" Click="AddButton_Click">Adicionar</Button>
+
+            <Button Margin="5 5 5 5" Click="Button_Click">Adicionar compra</Button>
         </StackPanel>
     </Border>
 </Window>

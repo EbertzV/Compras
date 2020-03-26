@@ -12,7 +12,7 @@ namespace Compras
     {
         private readonly string stringConexao = "Server=DESKTOP-S8RPACC;Database=compras;Integrated Security=true;";
 
-        public async Task<Compra> PersistirCompra(Compra compra)
+        public Compra PersistirCompra(Compra compra)
         {
 
 
@@ -23,17 +23,17 @@ namespace Compras
                 const string sqlItem = @"INSERT INTO CompraItem (Id, Descricao, ValorUnitario, Quantidade, IdCompra)
                                          VALUES (@Id, @Descricao, @ValorUnitario, @Quantidade, @IdCompra)";
 
-                await conexao.OpenAsync();
+                conexao.Open();
 
                 using (var transaction = conexao.BeginTransaction())
                 {
                     try
                     {
-                        var resultadoCompra = await conexao.ExecuteAsync(sql, new { compra.Id, compra.Data, compra.ValorTotal, compra.Descricao, NotaFiscal = "" }, transaction);
+                        var resultadoCompra = conexao.Execute(sql, new { compra.Id, compra.Data, compra.ValorTotal, compra.Descricao, NotaFiscal = "" }, transaction);
 
                         foreach (var it in compra.Itens)
                         {
-                            await conexao.ExecuteAsync(sqlItem, new { it.Id, it.Descricao, it.ValorUnitario, it.Quantidade, IdCompra = compra.Id }, transaction);
+                            conexao.Execute(sqlItem, new { it.Id, it.Descricao, it.ValorUnitario, it.Quantidade, IdCompra = compra.Id }, transaction);
                         }
 
                         transaction.Commit();

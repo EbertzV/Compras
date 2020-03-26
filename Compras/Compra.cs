@@ -17,14 +17,23 @@ namespace Compras
         }
 
         public Guid Id { get; }
-        public string Descricao { get; }
-        public decimal ValorTotal { get; }
-        public DateTime Data { get; }
+        public string Descricao { get; private set; }
+        public decimal ValorTotal { get; private set; }
+        public DateTime Data { get; private set; }
         public IList<CompraItem> Itens { get; }
         public string NotaFiscal { get; }
 
         public void AdicionarItem(CompraItem item)
-            => Itens.Add(item);
+        {
+            Itens.Add(item);
+            ValorTotal = ValorTotal + (item.ValorUnitario * item.Quantidade);
+        }
+
+        public void AdicionarData(DateTime data)
+            => Data = data;
+
+        public void DefinirDescricao(string descricao)
+            => Descricao = descricao;
     }
 
     public sealed class CompraItem

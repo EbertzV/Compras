@@ -25,12 +25,18 @@ namespace Compras.Desktop.Compras
             StackDescricao.Children.Add(label);
 
             Label label2 = new Label();
-            label.Content = ValorItem.Text;
+            label2.Content = ValorItem.Text;
             StackValorUnitario.Children.Add(label2);
 
             Label label3 = new Label();
-            label.Content = QuantidadeItem.Text;
+            label3.Content = QuantidadeItem.Text;
             StackQuantidade.Children.Add(label3);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ComprasRepositorio repo = new ComprasRepositorio();
+            repo.PersistirCompra(_compra);
         }
     }
 }
