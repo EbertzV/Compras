@@ -46,6 +46,15 @@
           }
         }
       },
+      "Powerstorm/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Powerstorm.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Powerstorm.dll": {}
+        }
+      },
       "runtime.native.System.Data.SqlClient.sni/4.7.0": {
         "type": "package",
         "dependencies": {
@@ -232,6 +241,17 @@
         "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.xml",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "Powerstorm/1.0.0": {
+      "sha512": "6qpxy7Bdj3s2E/ziCw1LF9Qe2dOEZ24Sr7hGXMA1ZbR9vAsGNyapAXu946FD6xeCXab93cfQippIdsNiOCqS7A==",
+      "type": "package",
+      "path": "powerstorm/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        "lib/netstandard2.0/Powerstorm.dll",
+        "powerstorm.1.0.0.nupkg.sha512",
+        "powerstorm.nuspec"
       ]
     },
     "runtime.native.System.Data.SqlClient.sni/4.7.0": {
@@ -545,24 +565,27 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Dapper >= 2.0.30",
+      "Powerstorm >= 1.0.0",
       "System.Data.SqlClient >= 4.8.1"
     ]
   },
   "packageFolders": {
     "C:\\Users\\ebert\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ebert\\source\\repos\\Compras\\Compras\\Compras.csproj",
-      "projectName": "Compras",
-      "projectPath": "C:\\Users\\ebert\\source\\repos\\Compras\\Compras\\Compras.csproj",
+      "projectUniqueName": "C:\\Users\\ebert\\source\\repos\\Compras\\Compras\\Compras.Dominio.csproj",
+      "projectName": "Compras.Dominio",
+      "projectPath": "C:\\Users\\ebert\\source\\repos\\Compras\\Compras\\Compras.Dominio.csproj",
       "packagesPath": "C:\\Users\\ebert\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\ebert\\source\\repos\\Compras\\Compras\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
         "C:\\Users\\ebert\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -574,6 +597,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Temp\\Publicacao\\Powerstorm": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -593,6 +617,10 @@
           "Dapper": {
             "target": "Package",
             "version": "[2.0.30, )"
+          },
+          "Powerstorm": {
+            "target": "Package",
+            "version": "[1.0.0, )"
           },
           "System.Data.SqlClient": {
             "target": "Package",

@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Temp\\Publicacao\\Powerstorm": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,6 +46,10 @@
             "Dapper": {
               "target": "Package",
               "version": "[2.0.30, )"
+            },
+            "Powerstorm": {
+              "target": "Package",
+              "version": "[1.0.0, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",

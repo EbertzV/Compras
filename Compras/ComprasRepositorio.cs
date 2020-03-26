@@ -1,7 +1,9 @@
 ﻿using Dapper;
+using Powerstorm;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Compras
@@ -12,7 +14,7 @@ namespace Compras
 
         public async Task<Compra> PersistirCompra(Compra compra)
         {
-            
+
 
             using (var conexao = new SqlConnection(stringConexao))
             {
@@ -27,11 +29,11 @@ namespace Compras
                 {
                     try
                     {
-                        var resultadoCompra = await conexao.ExecuteAsync(sql, new { compra.Id, compra.Data, compra.ValorTotal, compra.Descricao, NotaFiscal = "" });
+                        var resultadoCompra = await conexao.ExecuteAsync(sql, new { compra.Id, compra.Data, compra.ValorTotal, compra.Descricao, NotaFiscal = "" }, transaction);
 
                         foreach (var it in compra.Itens)
                         {
-                            await conexao.ExecuteAsync(sqlItem, new { it.Id, it.Descricao, it.ValorUnitario, it.Quantidade, IdCompra = compra.Id });
+                            await conexao.ExecuteAsync(sqlItem, new { it.Id, it.Descricao, it.ValorUnitario, it.Quantidade, IdCompra = compra.Id }, transaction);
                         }
 
                         transaction.Commit();
@@ -50,9 +52,45 @@ namespace Compras
             }
         }
 
-        public async Task<IEnumerable<Compra>> RecuperarCompras()
+        public IEnumerable<Compra> RecuperarCompras(Paginacao paginacao)
         {
+            const string sql = @"SELECT  Compra.Id,
+		                                 Compra.Data,
+		                                 Compra.ValorTotal,
+		                                 Compra.Descricao,
+		                                 Compra.NotaFiscal,
+		                                 CompraItem.Id AS ItemId,
+		                                 CompraItem.Descricao AS ItemDescricao,
+		                                 CompraItem.ValorUnitario AS ItemValorUnitario,
+		                                 CompraItem.Quantidade AS ItemQuantidade,
+		                                 CompraItem.DescricaoUnidade AS ItemDescricaoUnidade
+                                 FROM Compra (NOLOCK)
+                                 INNER JOIN CompraItem (NOLOCK) ON CompraItem.IdCompra = Compra.Id";
 
+            using (var conexao = new SqlConnection(stringConexao))
+            {
+                try
+                {
+                    conexao.Open();
+                    var resultado = conexao.Query(sql);
+
+                    return resultado
+                        .GroupBy(
+                            d => new { d.Id, d.Descricao, d.Data, d.NotaFiscal, d.ValorTotal },
+                            d => new CompraItem(d.ItemId, d.ItemDescricao, d.ItemValorUnitario, d.ItemQuantidade, d.ItemDescricaoUnidade),
+                            (key, g) => new Compra(key.Id, key.Descricao, key.Data, g.ToList(), key.NotaFiscal, key.ValorTotal))
+                        .Skip((paginacao.PaginaAtual - 1) * paginacao.ResultadosPorPagina)
+                        .Take(paginacao.ResultadosPorPagina);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    conexao.Close();
+                }
+            }
         }
     }
 }

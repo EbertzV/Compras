@@ -9,6 +9,7 @@
       "Compras/1.0.0": {
         "dependencies": {
           "Dapper": "2.0.30",
+          "Powerstorm": "1.0.0",
           "System.Data.SqlClient": "4.8.1"
         },
         "runtime": {
@@ -31,6 +32,14 @@
         "dependencies": {
           "System.Security.AccessControl": "4.7.0",
           "System.Security.Principal.Windows": "4.7.0"
+        }
+      },
+      "Powerstorm/1.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/Powerstorm.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "runtime.native.System.Data.SqlClient.sni/4.7.0": {
@@ -130,6 +139,13 @@
       "sha512": "sha512-KSrRMb5vNi0CWSGG1++id2ZOs/1QhRqROt+qgbEAdQuGjGrFcl4AOl4/exGPUYz2wUnU42nvJqon1T3U0kPXLA==",
       "path": "microsoft.win32.registry/4.7.0",
       "hashPath": "microsoft.win32.registry.4.7.0.nupkg.sha512"
+    },
+    "Powerstorm/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6qpxy7Bdj3s2E/ziCw1LF9Qe2dOEZ24Sr7hGXMA1ZbR9vAsGNyapAXu946FD6xeCXab93cfQippIdsNiOCqS7A==",
+      "path": "powerstorm/1.0.0",
+      "hashPath": "powerstorm.1.0.0.nupkg.sha512"
     },
     "runtime.native.System.Data.SqlClient.sni/4.7.0": {
       "type": "package",

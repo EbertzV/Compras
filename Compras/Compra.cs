@@ -6,7 +6,7 @@ namespace Compras
 {
     public sealed class Compra
     {
-        public Compra(Guid id, string descricao, DateTime data, IEnumerable<CompraItem> itens, string notaFiscal = "", decimal? valorTotal = null)
+        public Compra(Guid id, string descricao, DateTime data, IList<CompraItem> itens, string notaFiscal = "", decimal? valorTotal = null)
         {
             Id = id;
             Descricao = descricao;
@@ -20,8 +20,11 @@ namespace Compras
         public string Descricao { get; }
         public decimal ValorTotal { get; }
         public DateTime Data { get; }
-        public IEnumerable<CompraItem> Itens { get; }
+        public IList<CompraItem> Itens { get; }
         public string NotaFiscal { get; }
+
+        public void AdicionarItem(CompraItem item)
+            => Itens.Add(item);
     }
 
     public sealed class CompraItem
