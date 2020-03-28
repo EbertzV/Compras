@@ -1,0 +1,8 @@
+C:\Users\ebert\source\repos\Compras\Compras\bin\Release\netcoreapp3.1\Compras.Dominio.deps.json
+C:\Users\ebert\source\repos\Compras\Compras\bin\Release\netcoreapp3.1\Compras.Dominio.dll
+C:\Users\ebert\source\repos\Compras\Compras\bin\Release\netcoreapp3.1\Compras.Dominio.pdb
+C:\Users\ebert\source\repos\Compras\Compras\obj\Release\netcoreapp3.1\Compras.Dominio.csprojAssemblyReference.cache
+C:\Users\ebert\source\repos\Compras\Compras\obj\Release\netcoreapp3.1\Compras.Dominio.AssemblyInfoInputs.cache
+C:\Users\ebert\source\repos\Compras\Compras\obj\Release\netcoreapp3.1\Compras.Dominio.AssemblyInfo.cs
+C:\Users\ebert\source\repos\Compras\Compras\obj\Release\netcoreapp3.1\Compras.Dominio.dll
+C:\Users\ebert\source\repos\Compras\Compras\obj\Release\netcoreapp3.1\Compras.Dominio.pdb

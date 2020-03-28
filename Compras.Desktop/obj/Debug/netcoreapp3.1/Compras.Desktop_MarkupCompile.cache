@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 C:\Users\ebert\source\repos\Compras\Compras.Desktop\App.xaml
-3-1291784563
+3-1138334266
 
-5-2115182018
+6-243047469
 196-1896132010
-Compras\ListaCompras.xaml;Compras\NovaCompra.xaml;MainWindow.xaml;
+Janelas\ListaCompras.xaml;Janelas\NovaCompra.xaml;MainWindow.xaml;
 
 False
 

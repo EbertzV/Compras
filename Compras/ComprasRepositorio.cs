@@ -4,13 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Compras
 {
     public sealed class ComprasRepositorio
     {
-        private readonly string stringConexao = "Server=DESKTOP-S8RPACC;Database=compras;Integrated Security=true;";
+        private readonly string stringConexao = "Server=localhost;Database=compras;Integrated Security=true;";
 
         public Compra PersistirCompra(Compra compra)
         {
@@ -81,6 +80,55 @@ namespace Compras
                             (key, g) => new Compra(key.Id, key.Descricao, key.Data, g.ToList(), key.NotaFiscal, key.ValorTotal))
                         .Skip((paginacao.PaginaAtual - 1) * paginacao.ResultadosPorPagina)
                         .Take(paginacao.ResultadosPorPagina);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    conexao.Close();
+                }
+            }
+        }
+
+        public Compra RecuperarPorId(Guid id)
+        {
+            const string sql = @"SELECT  Compra.Id,
+		                                 Compra.Data,
+		                                 Compra.ValorTotal,
+		                                 Compra.Descricao,
+		                                 Compra.NotaFiscal,
+		                                 CompraItem.Id AS ItemId,
+		                                 CompraItem.Descricao AS ItemDescricao,
+		                                 CompraItem.ValorUnitario AS ItemValorUnitario,
+		                                 CompraItem.Quantidade AS ItemQuantidade,
+		                                 CompraItem.DescricaoUnidade AS ItemDescricaoUnidade
+                                 FROM Compra (NOLOCK)
+                                 INNER JOIN CompraItem (NOLOCK) ON CompraItem.IdCompra = Compra.Id
+                                 WHERE Compra.Id = @id";
+
+            using (var conexao = new SqlConnection(stringConexao))
+            {
+                try
+                {
+                    conexao.Open();
+                    var resultado = conexao.Query(sql, new { id });
+                    return resultado
+                        .GroupBy(r => new { r.Id, r.Data, r.ValorTotal, r.Descricao, r.NotaFiscal })
+                        .Select(c => new Compra(
+                            c.Key.Id, 
+                            c.Key.Descricao, 
+                            c.Key.Data, 
+                            c.Select(a => new CompraItem(
+                                a.ItemId,
+                                a.ItemDescricao, 
+                                a.ItemValorUnitario, 
+                                a.ItemQuantidade, 
+                                a.ItemDescricaoUnidade)).ToList(),
+                            c.Key.NotaFiscal,
+                            c.Key.ValorTotal))
+                        .FirstOrDefault();;
                 }
                 catch (Exception ex)
                 {

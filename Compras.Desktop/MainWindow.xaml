@@ -5,28 +5,69 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Compras.Desktop"
         mc:Ignorable="d"
-        Title="Compras" Height="450" Width="800" Icon="list.ico" WindowStyle="ThreeDBorderWindow" Background="#FFB0ABAB">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="83*"/>
-            <ColumnDefinition Width="717*"/>
-        </Grid.ColumnDefinitions>
-        <Border BorderThickness="1" BorderBrush="Black" Grid.ColumnSpan="2">
-            <DockPanel HorizontalAlignment="Left" Height="434" LastChildFill="False" VerticalAlignment="Top" Width="800" Background="#FFC7C7C7">
-                <Menu DockPanel.Dock="Top" Background="#FFA6A6A6" Height="27">
-                    <MenuItem Header="_Arquivo" Height="28" Width="70">
-                        <MenuItem Header="_Sair"></MenuItem>
-                    </MenuItem>
-                    <MenuItem Header="_Compras" Width="84">
-                        <MenuItem Header="_Nova compra" Click="MenuItem_Click_1"></MenuItem>
-                        <MenuItem Header="_Listar compras" Click="MenuItem_Click"></MenuItem>
-                    </MenuItem>
-                    <MenuItem Header="_Ajuda">
-                        
-                    </MenuItem>
-                </Menu>
-            </DockPanel>
-        </Border>
+        Title="Compras" 
+        FontStretch="Expanded" 
+        Icon="Images/cart.png"
+        FontFamily="Verdana" 
+        FontSize="12"
+        WindowStyle="ThreeDBorderWindow" 
+        Background="LightGray"
+        >
+    <Grid x:Name="MainPanel">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
+        <StackPanel>
+            <Menu FontStretch="Expanded" FontFamily="Verdana">
+                <MenuItem Padding="10 10 10 10" Header="Arquivo"/>
+                <MenuItem Padding="10 10 10 10" Header="Exibir"/>
+                <MenuItem Padding="10 10 10 10" Header="Ferramentas"/>
+                <MenuItem Padding="10 10 10 10" Header="Sobre"/>
+            </Menu>
+
+            <StackPanel Margin="5 5 5 5" Background="LightGray">
+                <TextBlock HorizontalAlignment="Center" Padding="15 15 15 15" Margin="5 5 5 5" FontSize="16" FontWeight="Bold" Text="Programa de registro de compras - Puro Recheio"/>
+            </StackPanel>
+
+
+            <Grid Margin="5 5 5 5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Button BorderBrush="Black" BorderThickness="2" Padding="0 10 10 10" FontWeight="Bold" Grid.Column="0" Grid.Row="1" Margin="5 5 5 5" Click="AbrirJanelaComprasEfetuadas">
+                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <Image HorizontalAlignment="Left" Source="Images/list.png" Width="20" Margin="5 0 5 0"/>
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Text="Ver compras efetuadas"></TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button BorderBrush="Black" BorderThickness="2" Padding="0 10 10 10" FontWeight="Bold" Grid.Column="0" Grid.Row="2" Margin="5 5 5 5" Click="AbrirJanelaCadastrarNovaCompra">
+                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <Image HorizontalAlignment="Left" Source="Images/add.png" Width="20" Margin="5 0 5 0"/>
+                        <TextBlock VerticalAlignment="Center" TextAlignment="Left" HorizontalAlignment="Left" Text="Nova compra"></TextBlock>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Margin="5 15 5 5" Background="Gray">
+            <TextBlock Margin="15 15 15 15">
+                Contato: vitorebertz@gmail.com
+            </TextBlock>
+            <TextBlock Margin="15 15 15 15">
+                http://www.purorecheio.com.br
+            </TextBlock>
+        </StackPanel>
+        
     </Grid>
 </Window>

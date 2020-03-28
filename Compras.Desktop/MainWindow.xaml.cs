@@ -1,5 +1,7 @@
-﻿using Compras.Desktop.Compras;
+﻿using Compras.Desktop.Janelas;
+using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Compras.Desktop
 {
@@ -11,18 +13,18 @@ namespace Compras.Desktop
         public MainWindow()
         {
             InitializeComponent();
+            var t = new TreeViewItem();
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void AbrirJanelaComprasEfetuadas(object sender, RoutedEventArgs e)
         {
-            ListaCompras listaCompras = new ListaCompras();
-            listaCompras.Show();
+            ListaCompras lista = new ListaCompras();
+            lista.Show();
         }
-
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        private void AbrirJanelaCadastrarNovaCompra(object sender, RoutedEventArgs e)
         {
-            TelaNovaCompra novaCompra = new TelaNovaCompra();
-            novaCompra.Show();
+            TelaNovaCompra tela = new TelaNovaCompra();
+            tela.Show();
         }
     }
 }

@@ -7,15 +7,46 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="list.ico" />
+    <Compile Remove="Imagens\**" />
+    <EmbeddedResource Remove="Imagens\**" />
+    <None Remove="Imagens\**" />
+    <Page Remove="Imagens\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Compras\Compras.Dominio.csproj" />
+    <None Remove="Images\add.png" />
+    <None Remove="Images\add.svg" />
+    <None Remove="Images\add_box.svg" />
+    <None Remove="Images\add_circle.svg" />
+    <None Remove="Images\cart.png" />
+    <None Remove="Images\cart.svg" />
+    <None Remove="Images\check.svg" />
+    <None Remove="Images\clear.svg" />
+    <None Remove="Images\delete.png" />
+    <None Remove="Images\delete.svg" />
+    <None Remove="Images\diamond.png" />
+    <None Remove="Images\done.svg" />
+    <None Remove="Images\download.svg" />
+    <None Remove="Images\edit.svg" />
+    <None Remove="Images\home.svg" />
+    <None Remove="Images\label.svg" />
+    <None Remove="Images\list.png" />
+    <None Remove="Images\list.svg" />
+    <None Remove="Images\save.svg" />
+    <None Remove="Images\settings.svg" />
+    <None Remove="like.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="list.ico" />
+   <ProjectReference Include="..\Compras\Compras.Dominio.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\add.png" />
+    <Resource Include="Images\cart.png" />
+    <Resource Include="Images\delete.png" />
+    <Resource Include="Images\diamond.png" />
+    <Resource Include="Images\list.png" />
   </ItemGroup>
 
 </Project>

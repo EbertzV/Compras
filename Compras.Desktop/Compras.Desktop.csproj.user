@@ -7,18 +7,18 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Compras\ListaCompras.xaml.cs">
+    <Compile Update="Janelas\ListaCompras.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Compras\NovaCompra.xaml.cs">
+    <Compile Update="Janelas\NovaCompra.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Compras\ListaCompras.xaml">
+    <Page Update="Janelas\ListaCompras.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Compras\NovaCompra.xaml">
+    <Page Update="Janelas\NovaCompra.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
