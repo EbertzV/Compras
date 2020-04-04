@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Compras.Desktop.ViewModels;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -12,8 +13,8 @@ namespace Compras.Desktop.Janelas
         private readonly ComprasRepositorio _comprasRepositorio;
         public ListaCompras()
         {
+            InitializeComponent();
             _comprasRepositorio = new ComprasRepositorio();
-            InitializeComponent();  
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

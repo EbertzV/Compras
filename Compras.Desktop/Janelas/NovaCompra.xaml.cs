@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Compras.Desktop.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,40 +9,34 @@ namespace Compras.Desktop.Janelas
     /// <summary>
     /// Lógica interna para NovaCompra.xaml
     /// </summary>
+    /// 
     public partial class TelaNovaCompra : Window
     {
-        private readonly Compra _compra;
+        private CompraViewModel _compraViewModel = new CompraViewModel();
         public TelaNovaCompra()
         {
-            _compra = new Compra(Guid.NewGuid(), "", DateTime.Now, new List<CompraItem>());
             InitializeComponent();
+            _compraViewModel.AdicionarItem(new ItemViewModel("Chocolate", 5.99M, 3));
+            this.DataContext = _compraViewModel;
         }
+
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            _compra.AdicionarItem(new CompraItem(Guid.NewGuid(), DescricaoItem.Text, decimal.Parse(ValorItem.Text), int.Parse(QuantidadeItem.Text), ""));
-            Label label = new Label();
-            label.Content = DescricaoItem.Text;
-            StackDescricao.Children.Add(label);
-
-            Label label2 = new Label();
-            label2.Content = ValorItem.Text;
-            StackValorUnitario.Children.Add(label2);
-
-            Label label3 = new Label();
-            label3.Content = QuantidadeItem.Text;
-            StackQuantidade.Children.Add(label3);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ComprasRepositorio repo = new ComprasRepositorio();
-            repo.PersistirCompra(_compra);
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void AdicionarItem(object sender, RoutedEventArgs e)
+        {
+            _compraViewModel.AdicionarItem(new ItemViewModel("Teste", 50M, 3));
         }
     }
 }
