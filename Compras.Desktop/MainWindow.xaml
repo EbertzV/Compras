@@ -21,7 +21,9 @@
 
         <StackPanel>
             <Menu FontStretch="Expanded" FontFamily="Verdana">
-                <MenuItem Padding="10 10 10 10" Header="Arquivo"/>
+                <MenuItem Padding="10 10 10 10" Header="Arquivo">
+                    <MenuItem Header="Sair" Click="MenuItem_Click"/>
+                </MenuItem>
                 <MenuItem Padding="10 10 10 10" Header="Exibir"/>
                 <MenuItem Padding="10 10 10 10" Header="Ferramentas"/>
                 <MenuItem Padding="10 10 10 10" Header="Sobre"/>

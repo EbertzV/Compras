@@ -1,0 +1,12 @@
+C:\Users\ebert\source\repos\Compras\Setup\bin\Release\netcoreapp3.1\Setup.exe
+C:\Users\ebert\source\repos\Compras\Setup\bin\Release\netcoreapp3.1\SQL\SQL2019-SSEI-Expr.exe
+C:\Users\ebert\source\repos\Compras\Setup\bin\Release\netcoreapp3.1\Setup.deps.json
+C:\Users\ebert\source\repos\Compras\Setup\bin\Release\netcoreapp3.1\Setup.runtimeconfig.json
+C:\Users\ebert\source\repos\Compras\Setup\bin\Release\netcoreapp3.1\Setup.runtimeconfig.dev.json
+C:\Users\ebert\source\repos\Compras\Setup\bin\Release\netcoreapp3.1\Setup.dll
+C:\Users\ebert\source\repos\Compras\Setup\bin\Release\netcoreapp3.1\Setup.pdb
+C:\Users\ebert\source\repos\Compras\Setup\obj\Release\netcoreapp3.1\Setup.csprojAssemblyReference.cache
+C:\Users\ebert\source\repos\Compras\Setup\obj\Release\netcoreapp3.1\Setup.AssemblyInfoInputs.cache
+C:\Users\ebert\source\repos\Compras\Setup\obj\Release\netcoreapp3.1\Setup.AssemblyInfo.cs
+C:\Users\ebert\source\repos\Compras\Setup\obj\Release\netcoreapp3.1\Setup.dll
+C:\Users\ebert\source\repos\Compras\Setup\obj\Release\netcoreapp3.1\Setup.pdb

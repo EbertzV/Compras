@@ -10,73 +10,99 @@
         FontStretch="Expanded"
         WindowStyle="ThreeDBorderWindow"
         Background="LightGray"
-        Icon="../Images/cart.png"
-        Height="600" Width="800">
+        SizeToContent="WidthAndHeight"
+        Icon="../Images/cart.png">
+    <Window.Resources>
+        <local:DinheiroValueConverter x:Key="DinheiroValueConverter"/>
+    </Window.Resources>
+    <StackPanel>
+        <TextBlock HorizontalAlignment="Center" Margin="5 15 5 15" Text="Nova compra" FontWeight="Bold" DockPanel.Dock="Top"></TextBlock>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Margin="15 15 15 15"  VerticalAlignment="Center" >
+                    Data da compra:
+            </TextBlock>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        
-        <StackPanel Grid.Row="0">
-            <TextBlock HorizontalAlignment="Center" Margin="5 15 5 15" Text="Nova compra" FontWeight="Bold"></TextBlock>
+            <DatePicker Margin="15 15 15 15"  VerticalAlignment="Center" />
+        </StackPanel>
+        <Grid Margin="15 15 15 15" VerticalAlignment="Center" Background="CadetBlue">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-            <Grid Margin="15 15 15 15">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock FontWeight="Bold" Margin="15 5 15 5" Grid.Row="0">Itens:</TextBlock>
+
+                <DataGrid Margin="15 5 15 5" 
+                          Name="DG_ItensCompra"  
+                          Grid.Row="1" 
+                          ItemsSource="{Binding Path=Itens, UpdateSourceTrigger=PropertyChanged}"
+                          ClipToBounds="True"
+                          MaxHeight="150">
+                </DataGrid>
+            </Grid>
+            <Grid Margin="15 5 15 5" Grid.Column="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="200"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Margin="15 15 15 15"  VerticalAlignment="Center" >
-                    Data da compra:
-                    </TextBlock>
+                <TextBlock Grid.Column="0" Text="Novo item" FontWeight="Bold" Margin="0 0 0 5"></TextBlock>
 
-                    <DatePicker Margin="15 15 15 15"  VerticalAlignment="Center" />
+                <TextBlock Padding="5" Grid.Row="1" Text="Descrição:" VerticalAlignment="Center"></TextBlock>
+                <TextBox Margin="5" Grid.Row="1" DataContext="{Binding Path=ItemAtual}" Text="{Binding Path=Descricao}" Grid.Column="1" x:Name="txtDescricao" Padding="2 5 2 5"></TextBox>
+
+                <TextBlock Padding="5" Grid.Row="2" Text="Valor unitário:" VerticalAlignment="Center"></TextBlock>
+                <TextBox 
+                    Margin="5" 
+                    DataContext="{Binding Path=ItemAtual}" 
+                    Focusable="True"
+                    GotFocus="txtValorUnitario_GotFocus"
+                    PreviewTextInput="txtValorUnitario_PreviewTextInput"
+                    TextChanged="txtValorUnitario_TextChanged"
+                    Text="{Binding Path=ValorUnitario, Converter={StaticResource DinheiroValueConverter}}"  
+                    Grid.Row="2" 
+                    Grid.Column="1" 
+                    x:Name="txtValorUnitario" 
+                    TextAlignment="Right" 
+                    Padding="2 5 2 5">
+                </TextBox>
+                
+                <TextBlock Padding="5" Grid.Row="3" Text="Quantidade:" VerticalAlignment="Center"></TextBlock>
+                <TextBox Margin="5" Grid.Row="3" Grid.Column="1" GotFocus="txtQuantidade_GotFocus" DataContext="{Binding Path=ItemAtual}" Text="{Binding Path=Quantidade}" x:Name="txtQuantidade" TextAlignment="Right" Padding="2 5 2 5" MaxLength="8" PreviewTextInput="txtQuantidade_PreviewTextInput"></TextBox>
+
+                <StackPanel Grid.Column="2" Grid.Row="4" Orientation="Horizontal" Margin="5" HorizontalAlignment="Right">
+                    <Button Padding="10 5 10 5" Click="AdicionarItem">Adicionar</Button>
                 </StackPanel>
                 
             </Grid>
+        </Grid>
 
-            <StackPanel Margin="15 15 15 15" Background="CadetBlue">
-                <TextBlock FontWeight="Bold" Margin="15 5 15 5">
-                Itens:
-                </TextBlock>
-                <DataGrid Margin="15 5 15 5" Name="DG_ItensCompra" ItemsSource="{Binding Path=Itens}">
-                    
-                </DataGrid>
-                
-                
-                <Button Margin="15 5 15 15" Padding="10 10 10 10" Click="AdicionarItem">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="../Images/add.png" Width="20"/>
-                        <TextBlock Margin="10 0 0 0" VerticalAlignment="Center">
-                            Adicionar item
-                        </TextBlock>
-                    </StackPanel>
-                </Button>
-            </StackPanel>
-        </StackPanel>
-
-        <StackPanel Grid.Row="1" >
-            <Button FontWeight="Bold" Click="Button_Click_1" Grid.Row="1" Padding="5 15 5 15" Margin="15 15 15 15">
-                Fechar
-            </Button>
-
-            <StackPanel Margin="5 15 5 5" Background="Gray">
-                <TextBlock Margin="15 15 15 15">
-                Contato: vitorebertz@gmail.com
-                </TextBlock>
-                <TextBlock Margin="15 15 15 15">
-                http://www.purorecheio.com.br
-                </TextBlock>
-            </StackPanel>
-        </StackPanel>
-        
-    </Grid>
+        <Grid Margin="15 15 15 15" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Padding="5 7 5 7" Click="Button_Click_2">Cancelar</Button>
+            <Button Padding="5 7 5 7" Grid.Column="2" Click="Button_Click_3">Confirmar</Button>
+        </Grid>
+    </StackPanel>
 </Window>

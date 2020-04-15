@@ -26,5 +26,10 @@ namespace Compras.Desktop
             TelaNovaCompra tela = new TelaNovaCompra();
             tela.Show();
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

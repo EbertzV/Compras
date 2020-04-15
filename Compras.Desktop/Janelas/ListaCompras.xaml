@@ -18,48 +18,53 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         
-        <StackPanel Grid.Row="0">
+        <Grid Grid.ColumnSpan="2" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            
             <TextBlock HorizontalAlignment="Center" Padding="15 15 15 15" Margin="5 5 5 5" FontSize="16" FontWeight="Bold"  Text="Compras efetuadas"/>
 
-            <TreeView Background="WhiteSmoke" Padding="15 15 15 15" Margin="15 15 15 15" x:Name="ComprasEfetuadasView">
-                <TreeView.Resources>
-                    <Style TargetType="{x:Type TreeViewItem}">
-                        
-                        <Setter Property="HeaderTemplate">
-                            <Setter.Value>
-                                <DataTemplate>
-                                    <StackPanel Margin="5 5 5 5" Orientation="Horizontal">
-                                        <Image Source="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TreeViewItem}}, Path=Tag, Converter={x:Static local:HeaderToImageConverter.Instance}}" Width="20"/>
-                                        <TextBlock Padding="5 5 5 5" VerticalAlignment="Center" Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TreeViewItem}}, Path=Header}"></TextBlock>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </TreeView.Resources>
-            </TreeView>
-            <Button FontWeight="Bold" Click="Button_Click_1" Padding="5 15 5 15" Margin="15 15 15 15">
-                Cadastrar compra
-            </Button>
+            <StackPanel Margin="10 10 10 10" Grid.Row="1" Background="CadetBlue">
+                <DataGrid Margin="10 10 10 10" Grid.Row="1" ItemsSource="{Binding Path=Compras}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn IsReadOnly="True" Header="Data da compra" Binding="{Binding Path=Data}"></DataGridTextColumn>
+                        <DataGridTextColumn IsReadOnly="True" Header="Valor total" Binding="{Binding Path=ValorTotal}"></DataGridTextColumn>
+                    </DataGrid.Columns>
 
-        </StackPanel>
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <DataGrid Margin="5 5 5 5" ItemsSource="{Binding Path=Itens}" AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn IsReadOnly="True" Header="Descrição" Binding="{Binding Descricao}"></DataGridTextColumn>
+                                    <DataGridTextColumn IsReadOnly="True" Header="Descrição" Binding="{Binding ValorUnitario}"></DataGridTextColumn>
+                                    <DataGridTextColumn IsReadOnly="True" Header="Descrição" Binding="{Binding Quantidade}"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
+                </DataGrid>
 
-        <StackPanel Grid.Row="1" >
-           
-            <Button FontWeight="Bold" Click="Button_Click" Grid.Row="1" Padding="5 15 5 15" Margin="15 15 15 15">
-                Fechar
-            </Button>
-
-            <StackPanel Margin="5 15 5 5" Background="Gray">
-                <TextBlock Margin="15 15 15 15">
-                Contato: vitorebertz@gmail.com
-                </TextBlock>
-                <TextBlock Margin="15 15 15 15">
-                http://www.purorecheio.com.br
-                </TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="15 15 15 15">
+                    <TextBlock VerticalAlignment="Center" >Página atual: </TextBlock>
+                    <Button x:Name="Btn_PgAnterior" Margin="10 0 0 0" VerticalAlignment="Center" Padding="2 2 2 2" Content="{Binding Path=PaginaAnterior}" Click="Button_Click_3"></Button>
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Path=PaginaAtual}"></TextBlock>
+                    <Button Margin="10 0 0 0" VerticalAlignment="Center" Padding="2 2 2 2" Content="{Binding Path=ProximaPagina}" Click="Button_Click_2"></Button>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+
+            <StackPanel Grid.Row="2" Margin="15 15 15 15">
+                
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

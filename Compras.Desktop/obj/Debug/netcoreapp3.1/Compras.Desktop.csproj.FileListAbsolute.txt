@@ -30,3 +30,4 @@ C:\Users\ebert\source\repos\Compras\Compras.Desktop\obj\Debug\netcoreapp3.1\Comp
 C:\Users\ebert\source\repos\Compras\Compras.Desktop\obj\Debug\netcoreapp3.1\Compras.Desktop.csproj.CopyComplete
 C:\Users\ebert\source\repos\Compras\Compras.Desktop\obj\Debug\netcoreapp3.1\Compras.Desktop.dll
 C:\Users\ebert\source\repos\Compras\Compras.Desktop\obj\Debug\netcoreapp3.1\Compras.Desktop.pdb
+C:\Users\ebert\source\repos\Compras\Compras.Desktop\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs

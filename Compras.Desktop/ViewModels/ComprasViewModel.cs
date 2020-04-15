@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace Compras.Desktop.ViewModels
@@ -8,15 +7,26 @@ namespace Compras.Desktop.ViewModels
     {
         public ComprasViewModel()
         {
+            PaginaAtual = 1;
+            ResultadosPorPagina = 10;
         }
 
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
-
-        public IEnumerable<CompraViewModel> Compras{ get; set; }
+        public ObservableCollection<CompraViewModel> Compras{ get; set; }
+        public int PaginaAtual { get; set; }
+        public int PaginaAnterior { get { if (PaginaAtual < 2) return PaginaAtual; else return PaginaAtual - 1; } }
+        public int ResultadosPorPagina { get; set; }
+        public int ProximaPagina 
+        {
+            get 
+            {
+                return PaginaAtual + 1; 
+            } 
+        }
 
         public override string ToString()
         {
-            return "Mirtes";
+            return ToString();
         }
     }
 }
