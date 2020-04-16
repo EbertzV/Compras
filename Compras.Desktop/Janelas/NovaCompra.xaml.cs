@@ -6,20 +6,19 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Compras.Desktop.Janelas
 {
     public partial class TelaNovaCompra : Window
     {
         private CompraViewModel _compraViewModel;
-        private int _cursorValorUnitarioPosicao;
 
         public TelaNovaCompra()
         {
             InitializeComponent();
             _compraViewModel = new CompraViewModel();
             this.DataContext = _compraViewModel;
-            _cursorValorUnitarioPosicao = 0;
         }
 
 

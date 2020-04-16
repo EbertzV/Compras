@@ -12,44 +12,98 @@
         Icon="../Images/cart.png"
         WindowStyle="ThreeDBorderWindow" 
         Background="LightGray"
-        Height="600" 
-        Width="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        
-        <Grid Grid.ColumnSpan="2" Grid.Row="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-            </Grid.RowDefinitions>
+        Height="Auto" 
+        Width="Auto">
+    <StackPanel>
+        <StackPanel>
             
             <TextBlock HorizontalAlignment="Center" Padding="15 15 15 15" Margin="5 5 5 5" FontSize="16" FontWeight="Bold"  Text="Compras efetuadas"/>
 
             <StackPanel Margin="10 10 10 10" Grid.Row="1" Background="CadetBlue">
-                <DataGrid Margin="10 10 10 10" Grid.Row="1" ItemsSource="{Binding Path=Compras}" AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn IsReadOnly="True" Header="Data da compra" Binding="{Binding Path=Data}"></DataGridTextColumn>
-                        <DataGridTextColumn IsReadOnly="True" Header="Valor total" Binding="{Binding Path=ValorTotal}"></DataGridTextColumn>
-                    </DataGrid.Columns>
+                <DataGrid 
+                    Margin="10 10 10 10" 
+                    Grid.Row="1" 
+                    ItemsSource="{Binding Path=Compras}" 
+                    AutoGenerateColumns="False" 
+                    CanUserReorderColumns="False" 
+                    CanUserDeleteRows="False"
+                    x:Name="DG_ListaCompras"
+                    RowDetailsVisibilityMode="Collapsed">
+                    <DataGrid.RowHeaderTemplate>
+                        <DataTemplate>
+                            
+                        </DataTemplate>
+                    </DataGrid.RowHeaderTemplate>
 
+                    <DataGrid.RowStyle>
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <EventSetter Event="PreviewMouseLeftButtonUp" Handler="DataGridRow_PreviewMouseLeftButtonUp"/>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock FontWeight="Bold" Padding="5 5 5 5" Text="Data da compra"></TextBlock>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Padding="5 5 5 5" Text="{Binding Path=Data, ConverterCulture=pt-BR, StringFormat=D}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock FontWeight="Bold" Padding="5 5 5 5"  Text="Valor total"></TextBlock>
+                            </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Padding="5 5 5 5" Text="{Binding Path=ValorTotal, ConverterCulture=pt-BR, StringFormat=C}"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
                     <DataGrid.RowDetailsTemplate>
                         <DataTemplate>
-                            <DataGrid Margin="5 5 5 5" ItemsSource="{Binding Path=Itens}" AutoGenerateColumns="False">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn IsReadOnly="True" Header="Descrição" Binding="{Binding Descricao}"></DataGridTextColumn>
-                                    <DataGridTextColumn IsReadOnly="True" Header="Descrição" Binding="{Binding ValorUnitario}"></DataGridTextColumn>
-                                    <DataGridTextColumn IsReadOnly="True" Header="Descrição" Binding="{Binding Quantidade}"></DataGridTextColumn>
-                                </DataGrid.Columns>
-                            </DataGrid>
+                            <StackPanel>
+                                <TextBlock Text="Itens da compra:" FontWeight="Bold" Padding="5 5 5 5"></TextBlock>
+                                <DataGrid Margin="5 5 5 5" ItemsSource="{Binding Path=Itens}" AutoGenerateColumns="False">
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn>
+                                            <DataGridTemplateColumn.Header>
+                                                <TextBlock Text="Descrição" Padding="5 5 5 5" FontWeight="Bold"></TextBlock>
+                                            </DataGridTemplateColumn.Header>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Padding="5 5 5 5" Text="{Binding Descricao}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+
+                                        <DataGridTemplateColumn>
+                                            <DataGridTemplateColumn.Header>
+                                                <TextBlock Text="Valor unitário" Padding="5 5 5 5" FontWeight="Bold"></TextBlock>
+                                            </DataGridTemplateColumn.Header>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Padding="5 5 5 5" Text="{Binding ValorUnitario, ConverterCulture=pt-BR, StringFormat=C}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+
+                                        <DataGridTemplateColumn>
+                                            <DataGridTemplateColumn.Header>
+                                                <TextBlock Text="Quantidade" Padding="5 5 5 5" FontWeight="Bold"></TextBlock>
+                                            </DataGridTemplateColumn.Header>
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Padding="5 5 5 5" Text="{Binding Quantidade}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
                         </DataTemplate>
                     </DataGrid.RowDetailsTemplate>
                 </DataGrid>
@@ -65,6 +119,6 @@
             <StackPanel Grid.Row="2" Margin="15 15 15 15">
                 
             </StackPanel>
-        </Grid>
-    </Grid>
+        </StackPanel>
+    </StackPanel>
 </Window>

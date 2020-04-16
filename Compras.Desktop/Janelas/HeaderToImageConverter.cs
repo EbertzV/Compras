@@ -13,7 +13,7 @@ namespace Compras.Desktop.Janelas
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if(value is string)
-                return new BitmapImage(new Uri($"pack://application:,,,/Images/diamond.png"));
+                return new BitmapImage(new Uri($"pack://application:,,,/Images/delete.png"));
             return null;
         }
 

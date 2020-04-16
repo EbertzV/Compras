@@ -2,6 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace Compras.Desktop.Janelas
 {
@@ -23,12 +25,12 @@ namespace Compras.Desktop.Janelas
                     .RecuperarCompras(new Powerstorm.Paginacao(paginaAtual - 1, Compras.ResultadosPorPagina))
                     .Select(c => new CompraViewModel(
                         new ObservableCollection<ItemViewModel>(c.Itens.Select(i => new ItemViewModel(
-                            i.Descricao, 
-                            i.ValorUnitario, 
-                            i.Quantidade))), 
-                        c.Data, 
+                            i.Descricao,
+                            i.ValorUnitario,
+                            i.Quantidade))),
+                        c.Data,
                         c.ValorTotal)));
-            
+
             DataContext = Compras;
             Btn_PgAnterior.Visibility = Visibility.Hidden;
         }
@@ -86,6 +88,22 @@ namespace Compras.Desktop.Janelas
                 Btn_PgAnterior.Visibility = Visibility.Visible;
             else
                 Btn_PgAnterior.Visibility = Visibility.Hidden;
+        }
+
+        private void DataGridRow_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            switch (((DataGridRow)sender).DetailsVisibility)
+            {
+                case Visibility.Visible:
+                    ((DataGridRow)sender).DetailsVisibility = Visibility.Collapsed;
+                    break;
+                case Visibility.Collapsed:
+                    ((DataGridRow)sender).DetailsVisibility = Visibility.Visible;
+                    break;
+
+                default:
+                    return;
+            }
         }
     }
 }

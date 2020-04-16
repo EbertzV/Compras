@@ -47,7 +47,43 @@
                           Grid.Row="1" 
                           ItemsSource="{Binding Path=Itens, UpdateSourceTrigger=PropertyChanged}"
                           ClipToBounds="True"
+                          AutoGenerateColumns="False"
                           MaxHeight="150">
+
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock Padding="5 5 5 5" FontWeight="Bold">Descrição</TextBlock>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Padding="5 5 5 5" Text="{Binding Descricao}"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock Padding="5 5 5 5" FontWeight="Bold">Valor unitário</TextBlock>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Padding="5 5 5 5" Text="{Binding ValorUnitario, ConverterCulture=pt-BR, StringFormat=C}"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock Padding="5 5 5 5" FontWeight="Bold">Quantidade</TextBlock>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Padding="5 5 5 5" Text="{Binding Quantidade}"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
                 </DataGrid>
             </Grid>
             <Grid Margin="15 5 15 5" Grid.Column="1">

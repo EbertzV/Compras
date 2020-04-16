@@ -9,10 +9,12 @@ namespace Compras.Desktop.ViewModels
         {
             PaginaAtual = 1;
             ResultadosPorPagina = 10;
+            ExibirDetalhes = false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
         public ObservableCollection<CompraViewModel> Compras{ get; set; }
+        public bool ExibirDetalhes { get; set; }
         public int PaginaAtual { get; set; }
         public int PaginaAnterior { get { if (PaginaAtual < 2) return PaginaAtual; else return PaginaAtual - 1; } }
         public int ResultadosPorPagina { get; set; }
