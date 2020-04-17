@@ -20,3 +20,11 @@ C:\Users\ebert\source\repos\Compras\Setup\bin\Debug\netcoreapp3.1\Programas\Dapp
 C:\Users\ebert\source\repos\Compras\Setup\bin\Debug\netcoreapp3.1\Programas\Powerstorm.dll
 C:\Users\ebert\source\repos\Compras\Setup\bin\Debug\netcoreapp3.1\Programas\System.Data.SqlClient.dll
 C:\Users\ebert\source\repos\Compras\Setup\obj\Debug\netcoreapp3.1\Setup.csprojAssemblyReference.cache
+C:\Users\ebert\source\repos\Compras\Setup\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\ebert\source\repos\Compras\Setup\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Users\ebert\source\repos\Compras\Setup\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Users\ebert\source\repos\Compras\Setup\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Users\ebert\source\repos\Compras\Setup\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\ebert\source\repos\Compras\Setup\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\ebert\source\repos\Compras\Setup\obj\Debug\netcoreapp3.1\Setup.csproj.CopyComplete
+C:\Users\ebert\source\repos\Compras\Setup\bin\Debug\netcoreapp3.1\Dapper.dll

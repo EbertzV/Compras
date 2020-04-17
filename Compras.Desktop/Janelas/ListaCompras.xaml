@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Compras.Desktop.Janelas"
-        Loaded="Window_Loaded"
         mc:Ignorable="d"
         Title="Compras efetuadas"
         FontStretch="Expanded" 
@@ -20,10 +19,29 @@
             <TextBlock HorizontalAlignment="Center" Padding="15 15 15 15" Margin="5 5 5 5" FontSize="16" FontWeight="Bold"  Text="Compras efetuadas"/>
 
             <StackPanel Margin="10 10 10 10" Grid.Row="1" Background="CadetBlue">
+                <WrapPanel>
+                    <WrapPanel Orientation="Horizontal" Margin="5 5 5 5">
+                        <TextBlock  VerticalAlignment="Center" Padding="5 5 5 5">De:</TextBlock>
+                        <DatePicker x:Name="DP_ListaCompras_FiltroDataMinima" VerticalAlignment="Center" Padding="5 5 5 5"></DatePicker>
+                        <TextBlock VerticalAlignment="Center" Padding="5 5 5 5">Até:</TextBlock>
+                        <DatePicker x:Name="DP_ListaCompras_FiltroDataMaxima" VerticalAlignment="Center" Padding="5 5 5 5"></DatePicker>
+                    </WrapPanel>
+
+                    <WrapPanel Orientation="Horizontal" Margin="5 5 5 5">
+                        <TextBlock  VerticalAlignment="Center" Padding="5 5 5 5">De:</TextBlock>
+                        <TextBox x:Name="TB_ListaCompras_FiltroValorMinimo" VerticalAlignment="Center" Width="100" Padding="5 5 5 5"></TextBox>
+                        <TextBlock VerticalAlignment="Center" Padding="5 5 5 5">Até:</TextBlock>
+                        <TextBox x:Name="TB_ListaCompras_FiltroValorMaximo" VerticalAlignment="Center" Width="100" Padding="5 5 5 5"></TextBox>
+                    </WrapPanel>
+
+                    <Button Margin="5 5 5 5" Padding="5 5 5 5" Click="Btn_ListaCompras_Pesquisar_Handler">Pesquisar</Button>
+                    <Button Margin="5 5 5 5"  Padding="5 5 5 5">Limpar filtros</Button>
+                </WrapPanel>
+                
                 <DataGrid 
                     Margin="10 10 10 10" 
                     Grid.Row="1" 
-                    ItemsSource="{Binding Path=Compras}" 
+                    ItemsSource="{Binding Path=Compras, UpdateSourceTrigger=PropertyChanged}" 
                     AutoGenerateColumns="False" 
                     CanUserReorderColumns="False" 
                     CanUserDeleteRows="False"

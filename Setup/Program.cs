@@ -1,4 +1,5 @@
 ﻿
+using Dapper;
 using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Data.SqlClient;
@@ -20,6 +21,19 @@ namespace Setup
             FileSystem.CopyDirectory("Programas", "C:\\Program Files (x86)\\PuroRecheio\\Compras");
             var processo = Process.Start("SQL\\SQL2019-SSEI-Expr.exe");
             processo.WaitForExit();
+
+            using (var connection = new SqlConnection("Server=localhost;Database=master;Integrated Security=true;"))
+            {
+                const string sql = @"CREATE DATABASE compras";
+                try
+                {
+                    connection.Execute(sql);
+                } catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                    return;
+                }
+            }
         }
     }
 }

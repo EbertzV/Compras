@@ -12,7 +12,9 @@ namespace Compras.Desktop.ViewModels
             ExibirDetalhes = false;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
+        public event PropertyChangedEventHandler PropertyChanged = (sender, e) => 
+        {
+        };
         public ObservableCollection<CompraViewModel> Compras{ get; set; }
         public bool ExibirDetalhes { get; set; }
         public int PaginaAtual { get; set; }
@@ -24,11 +26,6 @@ namespace Compras.Desktop.ViewModels
             {
                 return PaginaAtual + 1; 
             } 
-        }
-
-        public override string ToString()
-        {
-            return ToString();
         }
     }
 }

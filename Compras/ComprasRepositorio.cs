@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using Compras.Dominio;
+using Dapper;
 using Powerstorm;
 using System;
 using System.Collections.Generic;
@@ -78,12 +79,67 @@ namespace Compras
                             d => new { d.Id, d.Descricao, d.Data, d.NotaFiscal, d.ValorTotal },
                             d => new CompraItem(d.ItemId, d.ItemDescricao, d.ItemValorUnitario, d.ItemQuantidade, d.ItemDescricaoUnidade),
                             (key, g) => new Compra(key.Id, key.Descricao, key.Data, g.ToList(), key.NotaFiscal, key.ValorTotal))
+                        .OrderByDescending(b => b.Data)
                         .Skip((paginacao.PaginaAtual - 1) * paginacao.ResultadosPorPagina)
                         .Take(paginacao.ResultadosPorPagina);
                 }
                 catch (Exception ex)
                 {
                      throw ex;
+                }
+                finally
+                {
+                    conexao.Close();
+                }
+            }
+        }
+
+        public IEnumerable<Compra> RecuperarCompras(Paginacao paginacao, FiltroCompras filtro)
+        {
+            string sql = @"SELECT Compra.Id,
+                                  Compra.Data,
+                                  Compra.ValorTotal,
+                                  Compra.Descricao,
+                                  Compra.NotaFiscal,
+                                  CompraItem.Id AS ItemId,
+                                  CompraItem.Descricao AS ItemDescricao,
+                                  CompraItem.ValorUnitario AS ItemValorUnitario,
+                                  CompraItem.Quantidade AS ItemQuantidade,
+                                  CompraItem.DescricaoUnidade AS ItemDescricaoUnidade
+                          FROM Compra (NOLOCK)
+                          INNER JOIN CompraItem (NOLOCK) ON CompraItem.IdCompra = Compra.Id";
+
+            using (var conexao = new SqlConnection(stringConexao))
+            {
+                try
+                {
+                    conexao.Open();
+                    var resultado = conexao.Query(sql);
+
+                    return resultado
+                        .GroupBy(
+                            d => new { d.Id, d.Descricao, d.Data, d.NotaFiscal, d.ValorTotal },
+                            d => new CompraItem(d.ItemId, d.ItemDescricao, d.ItemValorUnitario, d.ItemQuantidade, d.ItemDescricaoUnidade),
+                            (key, g) => new Compra(key.Id, key.Descricao, key.Data, g.ToList(), key.NotaFiscal, key.ValorTotal))
+                        .Where(a =>
+                        {
+                            if (filtro.DataMaxima != null && a.Data >= filtro.DataMaxima)
+                                return false;
+                            if (filtro.DataMinima != null && a.Data <= filtro.DataMinima)
+                                return false;
+                            if (filtro.ValorMaximo != null && a.ValorTotal >= filtro.ValorMaximo)
+                                return false;
+                            if (filtro.ValorMinimo != null && a.ValorTotal <= filtro.ValorMinimo)
+                                return false;
+                            return true;
+                        })
+                        .OrderByDescending(b => b.Data)
+                        .Skip((paginacao.PaginaAtual - 1) * paginacao.ResultadosPorPagina)
+                        .Take(paginacao.ResultadosPorPagina);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
                 }
                 finally
                 {
