@@ -94,7 +94,19 @@ namespace Compras
             }
         }
 
-        public IEnumerable<Compra> RecuperarCompras(Paginacao paginacao, FiltroCompras filtro)
+        public sealed class ComprasViewModel
+        {
+            public ComprasViewModel(IEnumerable<Compra> compras, int totalResultados)
+            {
+                Compras = compras;
+                TotalResultados = totalResultados;
+            }
+
+            public IEnumerable<Compra> Compras { get; }
+            public int TotalResultados { get; }
+        }
+
+        public ComprasViewModel RecuperarCompras(Paginacao paginacao, FiltroCompras filtro)
         {
             string sql = @"SELECT Compra.Id,
                                   Compra.Data,
@@ -115,9 +127,7 @@ namespace Compras
                 {
                     conexao.Open();
                     var resultado = conexao.Query(sql);
-
-                    return resultado
-                        .GroupBy(
+                    var compras = resultado.GroupBy(
                             d => new { d.Id, d.Descricao, d.Data, d.NotaFiscal, d.ValorTotal },
                             d => new CompraItem(d.ItemId, d.ItemDescricao, d.ItemValorUnitario, d.ItemQuantidade, d.ItemDescricaoUnidade),
                             (key, g) => new Compra(key.Id, key.Descricao, key.Data, g.ToList(), key.NotaFiscal, key.ValorTotal))
@@ -133,9 +143,11 @@ namespace Compras
                                 return false;
                             return true;
                         })
-                        .OrderByDescending(b => b.Data)
+                        .OrderByDescending(b => b.Data);
+                    return new ComprasViewModel(
+                        compras
                         .Skip((paginacao.PaginaAtual - 1) * paginacao.ResultadosPorPagina)
-                        .Take(paginacao.ResultadosPorPagina);
+                        .Take(paginacao.ResultadosPorPagina), compras.Count());
                 }
                 catch (Exception ex)
                 {
