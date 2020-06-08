@@ -1,4 +1,4 @@
-﻿ <Window x:Class="Compras.Desktop.Janelas.ListaCompras"
+﻿<Window x:Class="Compras.Desktop.Janelas.ListaCompras"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,15 +10,24 @@
         FontFamily="Verdana" 
         Icon="../Images/cart.png"
         WindowStyle="ThreeDBorderWindow" 
-        Background="LightGray"
-        Height="Auto" 
+        
         Width="Auto">
     <StackPanel>
         <StackPanel>
-            
-            <TextBlock HorizontalAlignment="Center" Padding="15 15 15 15" Margin="5 5 5 5" FontSize="16" FontWeight="Bold"  Text="Compras efetuadas"/>
 
-            <StackPanel Margin="10 10 10 10" Grid.Row="1" Background="CadetBlue">
+            <!--<TextBlock HorizontalAlignment="Center" Padding="15 15 15 15" Margin="5 5 5 5" FontSize="16" FontWeight="Bold"  Text="Compras efetuadas"/>-->
+            <Menu FontStretch="Expanded" FontFamily="Verdana">
+                <MenuItem Padding="10 10 10 10" Header="Arquivo">
+                    <MenuItem Header="Sair" Click="MenuItem_Click"/>
+                </MenuItem>
+                <MenuItem Padding="10 10 10 10" Header="Exibir"/>
+                <MenuItem Padding="10 10 10 10" Header="Ferramentas">
+                    <MenuItem Header="Cadastrar compra" Click="MenuItem_Click_1"/>
+                </MenuItem>
+                <MenuItem Padding="10 10 10 10" Header="Sobre"/>
+            </Menu>
+
+            <StackPanel Margin="10 10 10 10">
                 <WrapPanel>
                     <WrapPanel Orientation="Horizontal" Margin="5 5 5 5">
                         <TextBlock  VerticalAlignment="Center" Padding="5 5 5 5">De:</TextBlock>
@@ -37,7 +46,7 @@
                     <Button Margin="5 5 5 5" Padding="5 5 5 5" Click="Btn_ListaCompras_Pesquisar_Handler">Pesquisar</Button>
                     <Button Margin="5 5 5 5"  Padding="5 5 5 5" Click="Button_Click_4">Limpar filtros</Button>
                 </WrapPanel>
-                
+
                 <DataGrid 
                     Margin="10 10 10 10" 
                     Grid.Row="1" 
@@ -49,7 +58,7 @@
                     RowDetailsVisibilityMode="Collapsed">
                     <DataGrid.RowHeaderTemplate>
                         <DataTemplate>
-                            
+
                         </DataTemplate>
                     </DataGrid.RowHeaderTemplate>
 
@@ -58,7 +67,7 @@
                             <EventSetter Event="PreviewMouseLeftButtonUp" Handler="DataGridRow_PreviewMouseLeftButtonUp"/>
                         </Style>
                     </DataGrid.RowStyle>
-                    
+
                     <DataGrid.Columns>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.Header>
@@ -74,9 +83,19 @@
                             <DataGridTemplateColumn.Header>
                                 <TextBlock FontWeight="Bold" Padding="5 5 5 5"  Text="Valor total"></TextBlock>
                             </DataGridTemplateColumn.Header>
-                                <DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Padding="5 5 5 5" Text="{Binding Path=ValorTotal, ConverterCulture=pt-BR, StringFormat=C}"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.Header>
+                                <TextBlock FontWeight="Bold" Padding="5 5 5 5"  Text="Nota fiscal"></TextBlock>
+                            </DataGridTemplateColumn.Header>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Click="Button_Click_5" Background="White">Ver imagem</Button>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -127,15 +146,11 @@
                 </DataGrid>
 
                 <StackPanel Orientation="Horizontal" Margin="15 15 15 15">
-                    <TextBlock VerticalAlignment="Center" >Página atual: </TextBlock>
-                    <Button x:Name="Btn_PgAnterior" Visibility="{Binding Path=ExibirPaginaAnterior}" Margin="10 0 0 0" VerticalAlignment="Center" Padding="2 2 2 2" Content="Anterior" Click="Button_Click_3"></Button>
-                    <TextBlock x:Name="lblPgAtual"  VerticalAlignment="Center" Text="{Binding Path=PaginaAtual, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
-                    <Button x:Name="Btn_ProxPg" Visibility="{Binding Path=ExibirProximaPagina}" Margin="10 0 0 0" VerticalAlignment="Center" Padding="2 2 2 2" Content="Próxima" Click="Button_Click_2"></Button>
+                    <TextBlock VerticalAlignment="Center" >Página atual:</TextBlock>
+                    <TextBlock x:Name="lblPgAtual" Margin="5 5 5 5" VerticalAlignment="Center" Text="{Binding Path=PaginaAtual, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                    <Button x:Name="Btn_PgAnterior" Visibility="{Binding Path=ExibirPaginaAnterior}" Margin="10 0 0 0" VerticalAlignment="Center" Padding="5 5 5 5" Content="Anterior" Click="Button_Click_3"></Button>
+                    <Button x:Name="Btn_ProxPg" Visibility="{Binding Path=ExibirProximaPagina}" Margin="10 0 0 0" VerticalAlignment="Center" Padding="5 5 5 5" Content="Próxima" Click="Button_Click_2"></Button>
                 </StackPanel>
-            </StackPanel>
-
-            <StackPanel Grid.Row="2" Margin="15 15 15 15">
-                
             </StackPanel>
         </StackPanel>
     </StackPanel>

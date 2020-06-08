@@ -14,8 +14,6 @@ namespace Compras
 
         public Compra PersistirCompra(Compra compra)
         {
-
-
             using (var conexao = new SqlConnection(stringConexao))
             {
                 const string sql = @"INSERT INTO Compra (Id, Data, ValorTotal, Descricao, NotaFiscal) 
@@ -29,7 +27,7 @@ namespace Compras
                 {
                     try
                     {
-                        var resultadoCompra = conexao.Execute(sql, new { compra.Id, compra.Data, compra.ValorTotal, compra.Descricao, NotaFiscal = "" }, transaction);
+                        var resultadoCompra = conexao.Execute(sql, new { compra.Id, compra.Data, compra.ValorTotal, compra.Descricao, compra.NotaFiscal}, transaction);
 
                         foreach (var it in compra.Itens)
                         {

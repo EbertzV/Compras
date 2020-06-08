@@ -13,20 +13,23 @@ namespace Compras.Desktop.ViewModels
             Data = DateTime.Now;
             ValorTotal = 0;
             ItemAtual = ItemViewModel.NovoVazio();
+            NotaFiscal = "";
         }
 
-        public CompraViewModel(ObservableCollection<ItemViewModel> itens, DateTime data, decimal valorTotal)
+        public CompraViewModel(ObservableCollection<ItemViewModel> itens, DateTime data, decimal valorTotal, string notaFiscal)
         {
             Itens = itens;
             Data = data;
             ValorTotal = valorTotal;
             ItemAtual = ItemViewModel.NovoVazio();
+            NotaFiscal = notaFiscal;
         }
 
         public event PropertyChangedEventHandler PropertyChanged = (o, sender) => { };
 
         public DateTime Data { get; set; }
         public decimal ValorTotal { get; set; }
+        public string NotaFiscal { get; set; }
         public ObservableCollection<ItemViewModel> Itens{ get; set; }
         public ItemViewModel ItemAtual { get; set; }
 

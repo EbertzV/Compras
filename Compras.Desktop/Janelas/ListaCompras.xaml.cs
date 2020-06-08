@@ -2,6 +2,7 @@
 using Compras.Dominio;
 using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,9 +29,12 @@ namespace Compras.Desktop.Janelas
                             i.ValorUnitario,
                             i.Quantidade))),
                         c.Data,
-                        c.ValorTotal)));
+                        c.ValorTotal,
+                        c.NotaFiscal)));
             ComprasModel.Compras = compras;
             ComprasModel.QtdResultados = resultado.TotalResultados;
+            Btn_ProxPg.Visibility = ComprasModel.ExibirProximaPagina ? Visibility.Visible : Visibility.Hidden;
+            Btn_PgAnterior.Visibility = ComprasModel.ExibirPaginaAnterior ? Visibility.Visible : Visibility.Hidden;
             DataContext = ComprasModel;
         }
 
@@ -62,7 +66,8 @@ namespace Compras.Desktop.Janelas
                         i.ValorUnitario,
                         i.Quantidade))),
                     c.Data,
-                    c.ValorTotal)));
+                    c.ValorTotal,
+                    c.NotaFiscal)));
 
             ComprasModel.Compras.Clear();
             foreach (var compra in _compras)
@@ -71,6 +76,7 @@ namespace Compras.Desktop.Janelas
 
             ComprasModel.PaginaAtual = ComprasModel.ProximaPagina;
             Btn_ProxPg.Visibility = ComprasModel.ExibirProximaPagina ? Visibility.Visible : Visibility.Hidden;
+            Btn_PgAnterior.Visibility = ComprasModel.ExibirPaginaAnterior ? Visibility.Visible : Visibility.Hidden;
             lblPgAtual.Text = ComprasModel.PaginaAtual.ToString();
         }
 
@@ -91,7 +97,8 @@ namespace Compras.Desktop.Janelas
                         i.ValorUnitario,
                         i.Quantidade))),
                     c.Data,
-                    c.ValorTotal)));
+                    c.ValorTotal,
+                    c.NotaFiscal)));
 
             ComprasModel.Compras.Clear();
             foreach (var compra in _compras)
@@ -142,7 +149,8 @@ namespace Compras.Desktop.Janelas
                         i.ValorUnitario,
                         i.Quantidade))),
                     c.Data,
-                    c.ValorTotal)));
+                    c.ValorTotal,
+                    c.NotaFiscal)));
 
             ComprasModel.Compras.Clear();
             foreach (var compra in _compras)
@@ -164,6 +172,23 @@ namespace Compras.Desktop.Janelas
             DP_ListaCompras_FiltroDataMinima.SelectedDate = null;
             TB_ListaCompras_FiltroValorMaximo.Text = null;
             TB_ListaCompras_FiltroValorMinimo.Text = null;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            TelaNovaCompra tela = new TelaNovaCompra();
+            tela.ShowDialog();
+            Console.ReadKey();
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

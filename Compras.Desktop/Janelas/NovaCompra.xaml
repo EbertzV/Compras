@@ -9,14 +9,12 @@
         FontFamily="Verdana"
         FontStretch="Expanded"
         WindowStyle="ThreeDBorderWindow"
-        Background="LightGray"
         SizeToContent="WidthAndHeight"
         Icon="../Images/cart.png">
     <Window.Resources>
         <local:DinheiroValueConverter x:Key="DinheiroValueConverter"/>
     </Window.Resources>
     <StackPanel>
-        <TextBlock HorizontalAlignment="Center" Margin="5 15 5 15" Text="Nova compra" FontWeight="Bold" DockPanel.Dock="Top"></TextBlock>
         <StackPanel Orientation="Horizontal">
             <TextBlock Margin="15 15 15 15"  VerticalAlignment="Center" >
                     Data da compra:
@@ -24,7 +22,12 @@
 
             <DatePicker Margin="15 15 15 15"  VerticalAlignment="Center" />
         </StackPanel>
-        <Grid Margin="15 15 15 15" VerticalAlignment="Center" Background="CadetBlue">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Margin="15 15 15 15"  VerticalAlignment="Center" >Nota fiscal:</TextBlock>
+            <Button Padding="5 5 5 5" Margin="5 5 5 5" Click="Button_Click_4">Selecionar arquivo</Button>
+            <TextBlock Margin="15 15 15 15"  VerticalAlignment="Center"  x:Name="lblNomeArquivo" Text="{Binding NotaFiscal}"></TextBlock>
+        </StackPanel>
+        <Grid Margin="15 15 15 15" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -120,14 +123,14 @@
                     TextAlignment="Right" 
                     Padding="2 5 2 5">
                 </TextBox>
-                
+
                 <TextBlock Padding="5" Grid.Row="3" Text="Quantidade:" VerticalAlignment="Center"></TextBlock>
                 <TextBox Margin="5" Grid.Row="3" Grid.Column="1" GotFocus="txtQuantidade_GotFocus" DataContext="{Binding Path=ItemAtual}" Text="{Binding Path=Quantidade}" x:Name="txtQuantidade" TextAlignment="Right" Padding="2 5 2 5" MaxLength="8" PreviewTextInput="txtQuantidade_PreviewTextInput"></TextBox>
 
                 <StackPanel Grid.Column="2" Grid.Row="4" Orientation="Horizontal" Margin="5" HorizontalAlignment="Right">
                     <Button Padding="10 5 10 5" Click="AdicionarItem">Adicionar</Button>
                 </StackPanel>
-                
+
             </Grid>
         </Grid>
 

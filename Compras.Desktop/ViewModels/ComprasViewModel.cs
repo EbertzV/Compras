@@ -9,7 +9,7 @@ namespace Compras.Desktop.ViewModels
         public ComprasViewModel()
         {
             PaginaAtual = 1;
-            ResultadosPorPagina = 1;
+            ResultadosPorPagina = 7;
             ExibirDetalhes = false;
             QtdResultados = 0;
         }
@@ -21,7 +21,7 @@ namespace Compras.Desktop.ViewModels
         public ObservableCollection<CompraViewModel> Compras{ get; set; }
         public bool ExibirDetalhes { get; set; }
         public int QtdResultados { get; set; }
-        public int QtdPaginas { get { return QtdResultados % ResultadosPorPagina; } }
+        public int QtdPaginas { get { return CalcularQuantidadeDePaginas(QtdResultados, ResultadosPorPagina); } }
         public int PaginaAtual { get; set; }
         public int PaginaAnterior { get { if (PaginaAtual < 2) return PaginaAtual; else return PaginaAtual - 1; } }
         public int ResultadosPorPagina { get; set; }
@@ -37,6 +37,17 @@ namespace Compras.Desktop.ViewModels
             {
                 return PaginaAtual + 1; 
             } 
+        }
+
+        public int CalcularQuantidadeDePaginas(int resultados, int resultadosPorPagina)
+        {
+            bool adicionarPagina = false;
+            if (resultados % resultadosPorPagina > 0)
+                adicionarPagina = true;
+            int paginas = resultados / resultadosPorPagina;
+            if (adicionarPagina)
+                paginas++;
+            return paginas;
         }
     }
 }

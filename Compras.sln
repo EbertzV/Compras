@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Implantação", "Implantação", "{2EB3650F-9FB2-4F12-A966-7C2F9819EF42}"
 	ProjectSection(SolutionItems) = preProject
 		Implantação\v_01.sql = Implantação\v_01.sql
+		Implantação\v_02.sql = Implantação\v_02.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dominio", "Dominio", "{C9FDED99-C50E-4D0A-8F40-1A3E453E348D}"
@@ -20,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop", "Desktop", "{6525
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Instalador", "Instalador", "{5903EC24-4F61-4553-B244-2BC68545D83F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Setup", "Setup\Setup.csproj", "{E6938AFF-2CEE-4ED7-9D38-061C1AC7CE1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Setup", "Setup\Setup.csproj", "{E6938AFF-2CEE-4ED7-9D38-061C1AC7CE1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

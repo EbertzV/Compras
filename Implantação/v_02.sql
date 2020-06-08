@@ -1,0 +1,2 @@
+IF NOT EXISTS (SELECT 1 FROM SysColumns WHERE Name = 'NotaFiscal' AND OBJECT_NAME(Id) = 'Compra')
+	ALTER TABLE Compra ADD NotaFiscal VARCHAR(MAX) NULL
